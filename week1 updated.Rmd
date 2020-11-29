@@ -1,0 +1,15 @@
+---
+title: "week1 updated"
+author: "pulin"
+date: "11/29/2020"
+output: html_document
+---
+
+```{r }
+library(leaflet)
+mymap<- leaflet() %>%
+  addTiles()
+mymap
+```
+
+## R Markdown
