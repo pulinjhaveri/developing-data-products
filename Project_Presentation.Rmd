@@ -1,0 +1,54 @@
+---
+title: "Weight per MPG"
+author: "pulin"
+date: "12/13/2020"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+
+## MT CARS
+```{r mtcars, echo = TRUE}
+summary(mtcars)
+```
+
+## Agenda
+This dataset has various columns. We are trying to predict weight of a Car in this dataset using 2 models.
+
+## Model1 With Red Line
+We will try to predict the Weight of the Car using miles per gallon of a given car and 
+try to predict what will be the weight of that car
+
+## Model2 with Blue Line
+We will try to predict the Weight of the Car using condition that:
+if miles per gallon of a given car is above 20, we will reduce it by 20 MPG.
+The model2 uses both MPG and this new set of values as a predictor and 
+then try to predict what will be the weight of that car.
+
+## Slider "What is the MPG of the car?"
+It will have initial value of 20 MPG. The User can slide left-right to adjust at 
+which MPG would they like to predict weight of the car.
+
+## MPG as input
+The server will try to compute the weight using Model 1 and 2. It will generate
+a Plot with red line showing Model1 and blue line showing Model2. On that line,
+it will show point of prediction on each model. Below that,it will also show 
+numerical prediction of weight of the car
+
+## Model 1 Summary
+```{r }
+Model1<-lm(wt ~ mpg, data=mtcars)
+summary(Model1)
+```
+
+## Model 2 Summary
+```{r }
+mtcars$mpgsp <- ifelse(mtcars$mpg - 20 > 0, 
+                           mtcars$mpg - 20,0)
+Model2<-lm(wt ~ mpgsp + mpg, data = mtcars)
+summary(Model2)
+```
+
+## Other Controls
+The user can also show or hide Model1 and Model 2. Initially they will be set to show both.
